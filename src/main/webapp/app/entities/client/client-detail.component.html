@@ -1,0 +1,45 @@
+
+<div *ngIf="client">
+    <h2><span jhiTranslate="serveurEticketApp.client.detail.title">Client</span> {{client.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="serveurEticketApp.client.name">Name</span></dt>
+        <dd>
+            <span>{{client.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="serveurEticketApp.client.signature">Signature</span></dt>
+        <dd>
+            <span>{{client.signature}}</span>
+        </dd>
+        <dt><span jhiTranslate="serveurEticketApp.client.apigetwayurl">Apigetwayurl</span></dt>
+        <dd>
+            <span>{{client.apigetwayurl}}</span>
+        </dd>
+        <dt><span jhiTranslate="serveurEticketApp.client.country">Country</span></dt>
+        <dd>
+            <div *ngIf="client.country">
+                <a [routerLink]="['/country', client.country?.id]">{{client.country?.countryname}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="serveurEticketApp.client.groupe">Groupe</span></dt>
+        <dd>
+            <div *ngIf="client.groupe">
+                <a [routerLink]="['/groupe', client.groupe?.id]">{{client.groupe?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client/'+ client.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
