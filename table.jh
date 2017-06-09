@@ -1,0 +1,29 @@
+
+entity Client{
+name String required,
+signature String,
+apigetwayurl String
+}
+entity Groupe{
+name String required
+}
+entity Country{
+ countryname String required,
+ countrycode String required
+}
+
+// Set pagination options
+relationship OneToMany{
+Groupe{client} to Client{groupe(name)}
+}
+relationship OneToOne{
+ Client{country(countryname)} to Country{clients}
+}
+//paginate Country with infinite-scroll
+paginate Client, Country  with pager
+
+
+
+
+service all with serviceImpl
+// Set an angular suffix

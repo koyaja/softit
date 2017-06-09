@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "country",
+            "otherEntityName": "country",
+            "otherEntityField": "countryname",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "clients"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "groupe",
+            "otherEntityName": "groupe",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "signature",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "apigetwayurl",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170529141346",
+    "entityTableName": "client",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}
