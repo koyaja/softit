@@ -32,6 +32,8 @@ public interface CountryService {
      */
     List<Country> findAllWhereClientsIsNull();
 
+    List<Country> findAll();
+
     /**
      *  Get the "id" country.
      *

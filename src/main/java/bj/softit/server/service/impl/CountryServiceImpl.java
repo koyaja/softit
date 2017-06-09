@@ -70,6 +70,11 @@ public class CountryServiceImpl implements CountryService{
             .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Country> findAll() {
+        return countryRepository.findAll();
+    }
+
     /**
      *  Get one country by id.
      *

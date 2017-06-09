@@ -108,24 +108,14 @@ public class CountryResource {
     /**
      * GET  /countries : get all the countries.
      *
-     * @param pageable the pagination information
-     * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of countries in body
      */
-   /* @GetMapping("/countries/all")
+    @GetMapping("/countries/all")
     @Timed
-    public List<Country>() getall() {
-  *//*      if ("clients-is-null".equals(filter)) {
-            log.debug("REST request to get all Countrys where clients is null");
-            return new ResponseEntity<>(countryService.findAllWhereClientsIsNull(),
-                HttpStatus.OK);
-        }
-        log.debug("REST request to get a page of Countries");
-        Page<Country> page = countryService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/countries");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);*//*
+    public List<Country> getAll() {
+
    return countryService.findAll();
-    }*/
+    }
 
     /**
      * GET  /countries/:id : get the "id" country.
