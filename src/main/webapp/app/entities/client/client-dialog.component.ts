@@ -1,17 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Response } from '@angular/http';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Response} from '@angular/http';
 
-import { Observable } from 'rxjs/Rx';
-import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import {Observable} from 'rxjs/Rx';
+import {NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {EventManager, AlertService} from 'ng-jhipster';
 
-import { Client } from './client.model';
-import { ClientPopupService } from './client-popup.service';
-import { ClientService } from './client.service';
-import { Country, CountryService } from '../country';
-import { Groupe, GroupeService } from '../groupe';
-import { ResponseWrapper } from '../../shared';
+import {Client} from './client.model';
+import {ClientPopupService} from './client-popup.service';
+import {ClientService} from './client.service';
+import {Country, CountryService} from '../country';
+import {Groupe, GroupeService} from '../groupe';
+import {ResponseWrapper} from '../../shared';
 
 @Component({
     selector: 'jhi-client-dialog',
@@ -27,14 +27,12 @@ export class ClientDialogComponent implements OnInit {
 
     groupes: Groupe[];
 
-    constructor(
-        public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private clientService: ClientService,
-        private countryService: CountryService,
-        private groupeService: GroupeService,
-        private eventManager: EventManager
-    ) {
+    constructor(public activeModal: NgbActiveModal,
+                private alertService: AlertService,
+                private clientService: ClientService,
+                private countryService: CountryService,
+                private groupeService: GroupeService,
+                private eventManager: EventManager) {
     }
 
     ngOnInit() {
@@ -45,6 +43,7 @@ export class ClientDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => {
                 if (!this.client.country || !this.client.country.id) {
                     this.countries = res.json;
+                    console.log(this.countries)
                 } else {
                     this.countryService
                         .find(this.client.country.id)
@@ -54,8 +53,11 @@ export class ClientDialogComponent implements OnInit {
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
         this.groupeService.query()
-            .subscribe((res: ResponseWrapper) => { this.groupes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+            .subscribe((res: ResponseWrapper) => {
+                this.groupes = res.json;
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -77,7 +79,7 @@ export class ClientDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Client) {
-        this.eventManager.broadcast({ name: 'clientListModification', content: 'OK'});
+        this.eventManager.broadcast({name: 'clientListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -114,14 +116,13 @@ export class ClientPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor(
-        private route: ActivatedRoute,
-        private clientPopupService: ClientPopupService
-    ) {}
+    constructor(private route: ActivatedRoute,
+                private clientPopupService: ClientPopupService) {
+    }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.modalRef = this.clientPopupService
                     .open(ClientDialogComponent, params['id']);
             } else {

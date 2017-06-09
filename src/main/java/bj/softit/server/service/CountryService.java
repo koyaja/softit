@@ -20,7 +20,7 @@ public interface CountryService {
 
     /**
      *  Get all the countries.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */

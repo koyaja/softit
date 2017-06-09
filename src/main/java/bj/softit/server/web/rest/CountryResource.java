@@ -34,7 +34,7 @@ public class CountryResource {
     private final Logger log = LoggerFactory.getLogger(CountryResource.class);
 
     private static final String ENTITY_NAME = "country";
-        
+
     private final CountryService countryService;
 
     public CountryResource(CountryService countryService) {

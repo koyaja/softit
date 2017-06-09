@@ -22,7 +22,7 @@ import java.util.stream.StreamSupport;
 public class CountryServiceImpl implements CountryService{
 
     private final Logger log = LoggerFactory.getLogger(CountryServiceImpl.class);
-    
+
     private final CountryRepository countryRepository;
 
     public CountryServiceImpl(CountryRepository countryRepository) {
@@ -44,7 +44,7 @@ public class CountryServiceImpl implements CountryService{
 
     /**
      *  Get all the countries.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -61,7 +61,7 @@ public class CountryServiceImpl implements CountryService{
      *  get all the countries where Clients is null.
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<Country> findAllWhereClientsIsNull() {
         log.debug("Request to get all countries where Clients is null");
         return StreamSupport
